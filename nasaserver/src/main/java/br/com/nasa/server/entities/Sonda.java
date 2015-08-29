@@ -20,14 +20,6 @@ public class Sonda implements Serializable {
 		this.pontoAtual = ponto;
 	}
 
-	public Sonda novaSonda() {
-		return new Sonda();
-	}
-
-	public Sonda novaSonda(Ponto pontoInicio) {
-		return new Sonda(pontoInicio);
-	}
-
 	public Sonda novaSonda(int x, int y, DirecaoCardial direcao) {
 		return new Sonda(new Ponto().novoPonto(x, y, direcao));
 	}
@@ -48,8 +40,8 @@ public class Sonda implements Serializable {
 	}
 
 	public String posicaoAtual() {
-		return "x: " + pontoAtual.getX().getValor()
-				+ "\ty:" + pontoAtual.getY().getValor() + "\tDireção: "
+		return "x: " + pontoAtual.getX().getValor() + "\ty:"
+				+ pontoAtual.getY().getValor() + "\tDireção: "
 				+ pontoAtual.getDirecaoAtual().getDirecao();
 	}
 }

@@ -15,40 +15,29 @@ public class Ponto implements Serializable {
 
 	public Ponto mover(ComandoControleSonda comando, Planalto planalto) {
 		switch (comando) {
-		case LEFT:
-			// this.direcaoAtual = DirecaoCardial.EAST.equals(this.direcaoAtual)
-			// ? DirecaoCardial.NORTH
-			// : DirecaoCardial.getPorCodigoDirecao(this.direcaoAtual
-			// .getCodigoDirecao() + 1);
-
-			this.direcaoAtual = this.calculaProximaDirecao(DirecaoCardial.EAST,
+			case LEFT:
+				this.direcaoAtual = this.calculaProximaDirecao(DirecaoCardial.EAST,
 					DirecaoCardial.NORTH, 1);
-			break;
-		case RIGHT:
-			// this.direcaoAtual =
-			// DirecaoCardial.NORTH.equals(this.direcaoAtual) ?
-			// DirecaoCardial.EAST
-			// : DirecaoCardial.getPorCodigoDirecao(this.direcaoAtual
-			// .getCodigoDirecao() - 1);
-
-			this.direcaoAtual = this.calculaProximaDirecao(
+				break;
+			case RIGHT:
+				this.direcaoAtual = this.calculaProximaDirecao(
 					DirecaoCardial.NORTH, DirecaoCardial.EAST, -1);
-			break;
-		case MOVE:
-			if (this.isMovimentoY()) {
-				this.calculaMovimento(DirecaoCardial.NORTH, this.y, planalto
+				break;
+			case MOVE:
+				if (this.isMovimentoY()) {
+					this.calculaMovimento(DirecaoCardial.NORTH, this.y, planalto
 						.getYMaximo().getValor(), planalto.getYMinimo()
 						.getValor());
-			} else {
-				this.calculaMovimento(DirecaoCardial.EAST, this.x, planalto
+				} else {
+					this.calculaMovimento(DirecaoCardial.EAST, this.x, planalto
 						.getXMaximo().getValor(), planalto.getXMinimo()
 						.getValor());
-			}
-			break;
-		default:
-			throw new InvalidParameterException("Comando não identificado!");
+				}
+				break;
+			default:
+				throw new InvalidParameterException("Comando não identificado!");
 		}
-
+		
 		return this;
 	}
 

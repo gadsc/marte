@@ -9,8 +9,12 @@ public class Posicao implements Serializable {
 	public Posicao() {
 
 	}
-	
+
 	public Posicao(int valor) {
+		if (valor < 0) {
+			throw new ArithmeticException(
+					"Não é possível criar um planalto com terreno negativo.");
+		}
 		this.valor = valor;
 	}
 
@@ -19,7 +23,8 @@ public class Posicao implements Serializable {
 			this.valor += valor;
 			return this;
 		} else {
-			throw new ArithmeticException("Não é possível adicionar do ponto máximo.");
+			throw new ArithmeticException(
+					"Não é possível adicionar do ponto máximo.");
 		}
 	}
 
@@ -28,10 +33,11 @@ public class Posicao implements Serializable {
 			this.valor -= valor;
 			return this;
 		} else {
-			throw new ArithmeticException("Não é possível subtrair do ponto mínimo.");
+			throw new ArithmeticException(
+					"Não é possível subtrair do ponto mínimo.");
 		}
 	}
-	
+
 	public int getValor() {
 		return valor;
 	}
