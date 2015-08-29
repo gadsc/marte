@@ -31,7 +31,7 @@ public class PosicaoTeste extends TestCase {
 			new Posicao(POSICAO_INVALIDA);
 		} catch (ArithmeticException exc) {
 			Assert.assertEquals(
-					"N„o È possÌvel criar um planalto com terreno negativo.",
+					"N√£o √© poss√≠vel criar um planalto com terreno negativo.",
 					exc.getMessage());
 		}
 	}
@@ -47,7 +47,7 @@ public class PosicaoTeste extends TestCase {
 		try {
 			new Posicao(POSICAO_VALIDA).add(1, 1);
 		} catch (ArithmeticException exc) {
-			Assert.assertEquals("N„o È possÌvel adicionar do ponto m·ximo.",
+			Assert.assertEquals("N√£o √© poss√≠vel adicionar do ponto m√°ximo.",
 					exc.getMessage());
 		}
 	}
@@ -63,7 +63,7 @@ public class PosicaoTeste extends TestCase {
 		try {
 			new Posicao(POSICAO_VALIDA).subtract(2, 1);
 		} catch (ArithmeticException exc) {
-			Assert.assertEquals("N„o È possÌvel subtrair do ponto mÌnimo.",
+			Assert.assertEquals("N√£o √© poss√≠vel subtrair do ponto m√≠nimo.",
 					exc.getMessage());
 		}
 	}
