@@ -8,15 +8,9 @@ import org.junit.Test;
 import br.com.nasa.server.entities.Planalto;
 
 /**
- * 
  * @author Gabz
- *
  */
 public class PlanaltoTeste extends TestCase {
-
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
 
 	@Test
 	public void testePlanaltoValido() {

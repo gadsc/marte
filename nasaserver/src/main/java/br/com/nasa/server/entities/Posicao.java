@@ -19,7 +19,7 @@ public class Posicao implements Serializable {
 	}
 
 	public Posicao add(int valor, int maximoPermitido) {
-		if (this.valor < maximoPermitido) {
+		if (this.valor <= maximoPermitido) {
 			this.valor += valor;
 			return this;
 		} else {
@@ -29,7 +29,7 @@ public class Posicao implements Serializable {
 	}
 
 	public Posicao subtract(int valor, int minimoPermitido) {
-		if (this.valor > minimoPermitido) {
+		if (this.valor >= minimoPermitido) {
 			this.valor -= valor;
 			return this;
 		} else {

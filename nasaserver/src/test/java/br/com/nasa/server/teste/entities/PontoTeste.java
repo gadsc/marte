@@ -15,13 +15,8 @@ import br.com.nasa.server.enums.DirecaoCardial;
 
 /**
  * @author Gabz
- *
  */
 public class PontoTeste extends TestCase {
-
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
 
 	@Test
 	public void testePontoValido() {

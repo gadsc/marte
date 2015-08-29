@@ -15,10 +15,6 @@ public class PosicaoTeste extends TestCase {
 	private static int POSICAO_VALIDA = 1;
 	private static int POSICAO_INVALIDA = -1;
 
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
 	@Test
 	public void testePosicaoValida() {
 		Posicao posicao = new Posicao(POSICAO_VALIDA);
