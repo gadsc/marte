@@ -14,30 +14,34 @@ public class Ponto implements Serializable {
 	private DirecaoCardial direcaoAtual;
 
 	public Ponto mover(ComandoControleSonda comando, Planalto planalto) {
-		switch (comando) {
+		if (comando == null) {
+			throw new InvalidParameterException("Comando não identificado!");
+		} else {
+			switch (comando) {
 			case LEFT:
-				this.direcaoAtual = this.calculaProximaDirecao(DirecaoCardial.EAST,
-					DirecaoCardial.NORTH, 1);
+				this.direcaoAtual = this.calculaProximaDirecao(
+						DirecaoCardial.EAST, DirecaoCardial.NORTH, 1);
 				break;
 			case RIGHT:
 				this.direcaoAtual = this.calculaProximaDirecao(
-					DirecaoCardial.NORTH, DirecaoCardial.EAST, -1);
+						DirecaoCardial.NORTH, DirecaoCardial.EAST, -1);
 				break;
 			case MOVE:
 				if (this.isMovimentoY()) {
-					this.calculaMovimento(DirecaoCardial.NORTH, this.y, planalto
-						.getYMaximo().getValor(), planalto.getYMinimo()
-						.getValor());
+					this.calculaMovimento(DirecaoCardial.NORTH, this.y,
+							planalto.getYMaximo().getValor(), planalto
+									.getYMinimo().getValor());
 				} else {
 					this.calculaMovimento(DirecaoCardial.EAST, this.x, planalto
-						.getXMaximo().getValor(), planalto.getXMinimo()
-						.getValor());
+							.getXMaximo().getValor(), planalto.getXMinimo()
+							.getValor());
 				}
 				break;
 			default:
-				throw new InvalidParameterException("Comando n�o identificado!");
+				throw new InvalidParameterException("Comando não identificado!");
+			}
 		}
-		
+
 		return this;
 	}
 
@@ -66,7 +70,11 @@ public class Ponto implements Serializable {
 	public Ponto(Posicao x, Posicao y, DirecaoCardial direcao) {
 		this.x = x;
 		this.y = y;
-		this.direcaoAtual = direcao;
+		if (direcao != null) {
+			this.direcaoAtual = direcao;
+		} else {
+			throw new InvalidParameterException("Direção inválida!");
+		}
 	}
 
 	public Ponto novoPonto(int x, int y, DirecaoCardial direcao) {

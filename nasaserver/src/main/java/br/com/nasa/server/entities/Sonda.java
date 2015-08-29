@@ -32,7 +32,7 @@ public class Sonda implements Serializable {
 	public Sonda moverSonda(ComandoControleSonda comando) {
 		if (this.planalto == null) {
 			throw new InvalidParameterException(
-					"Não é possível mover uma sonda antes dela pousar!");
+					"NÃ£o Ã© possÃ­vel mover uma sonda antes dela pousar!");
 		} else {
 			this.pontoAtual.mover(comando, this.planalto);
 			return this;
@@ -41,7 +41,7 @@ public class Sonda implements Serializable {
 
 	public String posicaoAtual() {
 		return "x: " + pontoAtual.getX().getValor() + "\ty:"
-				+ pontoAtual.getY().getValor() + "\tDireção: "
+				+ pontoAtual.getY().getValor() + "\tDireÃ§Ã£oo: "
 				+ pontoAtual.getDirecaoAtual().getDirecao();
 	}
 }
