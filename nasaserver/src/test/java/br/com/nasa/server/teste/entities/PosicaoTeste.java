@@ -26,12 +26,12 @@ public class PosicaoTeste extends TestCase {
 	}
 
 	@Test
-	public void testePosicaoInalida() {
+	public void testePosicaoInvalida() {
 		try {
 			new Posicao(POSICAO_INVALIDA);
 		} catch (ArithmeticException exc) {
 			Assert.assertEquals(
-					"Não é possível criar um planalto com terreno negativo.",
+					"Não é possível criar uma posição negativa.",
 					exc.getMessage());
 		}
 	}

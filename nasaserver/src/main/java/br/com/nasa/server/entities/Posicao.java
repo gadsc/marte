@@ -13,7 +13,7 @@ public class Posicao implements Serializable {
 	public Posicao(int valor) {
 		if (valor < 0) {
 			throw new ArithmeticException(
-					"Não é possível criar um planalto com terreno negativo.");
+					"Não é possível criar uma posição negativa.");
 		}
 		this.valor = valor;
 	}

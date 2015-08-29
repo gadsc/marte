@@ -23,7 +23,12 @@ public class Planalto implements Serializable {
 	}
 
 	public Planalto novoPlanalto(int xMaximo, int yMaximo) {
-		return new Planalto(new Posicao(xMaximo), new Posicao(yMaximo));
+		try {
+			return new Planalto(new Posicao(xMaximo), new Posicao(yMaximo));
+		} catch (ArithmeticException exc) {
+			throw new ArithmeticException(
+					"Não é possível criar um planalto com terreno negativo.");
+		}
 	}
 
 	public Posicao getXMinimo() {
