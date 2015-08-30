@@ -10,7 +10,7 @@ import br.com.nasa.server.entities.Posicao;
 /**
  * @author Gabz
  */
-public class PosicaoTeste extends TestCase {
+public class PosicaoTest extends TestCase {
 
 	private static int POSICAO_VALIDA = 1;
 	private static int POSICAO_INVALIDA = -1;

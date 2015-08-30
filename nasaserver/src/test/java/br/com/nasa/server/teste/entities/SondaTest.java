@@ -15,7 +15,7 @@ import br.com.nasa.server.enums.DirecaoCardial;
 /**
  * @author Gabz
  */
-public class SondaTeste extends TestCase {
+public class SondaTest extends TestCase {
 	@Test
 	public void testeNovaSondaValida() {
 		Sonda sonda = new Sonda().pousarSondaNoPlanalto(

@@ -10,7 +10,7 @@ import br.com.nasa.server.entities.Planalto;
 /**
  * @author Gabz
  */
-public class PlanaltoTeste extends TestCase {
+public class PlanaltoTest extends TestCase {
 
 	@Test
 	public void testePlanaltoValido() {
