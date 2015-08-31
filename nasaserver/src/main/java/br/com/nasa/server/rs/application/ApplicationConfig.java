@@ -1,4 +1,4 @@
-package br.com.nasa.server.rest.application;
+package br.com.nasa.server.rs.application;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -7,7 +7,7 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import br.com.nasa.server.rest.exception.ValidationExceptionMapper;
+import br.com.nasa.server.rs.exception.ValidationExceptionMapper;
 import br.com.nasa.server.rs.service.SondaService;
 
 /**

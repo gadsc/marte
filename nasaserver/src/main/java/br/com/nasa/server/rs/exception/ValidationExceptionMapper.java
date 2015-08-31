@@ -1,4 +1,4 @@
-package br.com.nasa.server.rest.exception;
+package br.com.nasa.server.rs.exception;
 
 import javax.validation.ValidationException;
 import javax.ws.rs.core.Response;
