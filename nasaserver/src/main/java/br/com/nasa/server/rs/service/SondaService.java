@@ -23,7 +23,6 @@ import br.com.nasa.server.constants.ConstraintConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
 import br.com.nasa.server.model.Planalto;
-import br.com.nasa.server.model.Sonda;
 import br.com.nasa.server.rs.request.SondaRequest;
 import br.com.nasa.server.service.bean.SondaBean;
 
@@ -34,7 +33,7 @@ public class SondaService implements Serializable {
 	@Inject
 	private SondaBean sondaBean;
 
-	@Path("/get/mover")
+	@Path("/get/mover/unica")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -45,18 +44,14 @@ public class SondaService implements Serializable {
 			@NotNull(message = ConstraintConstants.INFORME_Y_INICIAL_SONDA) @Min(value = 0, message = ConstraintConstants.POSICAO_Y_INICIAL_MENOR_0) @QueryParam("yInicialSonda") Integer yInicialSonda,
 			@NotNull(message = ConstraintConstants.INFORME_DIRECAO_SONDA) @QueryParam("direcao") DirecaoCardial direcao,
 			@NotNull(message = ConstraintConstants.ADICIONE_LISTA_COMANDOS) @QueryParam("comandos") List<ComandoControleSonda> comandos) {
-		Sonda sonda = new Sonda().pousarSondaNoPlanalto(
-				new Planalto().novoPlanalto(xPlanalto, yPlanalto)).novaSonda(
-				xInicialSonda, yInicialSonda, direcao);
-
-		for (ComandoControleSonda comando : comandos) {
-			sonda.moverSonda(comando);
-		}
-
-		return Response.ok(sonda).build();
+		return Response.ok(
+				sondaBean.executaSonda(
+						new Planalto().novoPlanalto(xPlanalto, yPlanalto),
+						xInicialSonda, yInicialSonda, direcao, comandos))
+				.build();
 	}
 
-	@Path("/put/mover")
+	@Path("/put/mover/lista")
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Consumes(MediaType.APPLICATION_JSON)
