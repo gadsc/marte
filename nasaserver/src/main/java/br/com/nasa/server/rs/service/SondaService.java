@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -37,12 +38,13 @@ public class SondaService implements Serializable {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response moverGet(@QueryParam("xMaximoPlanalto") int xPlanalto,
-			@QueryParam("yMaximoPlanalto") int yPlanalto,
-			@QueryParam("xInicialSonda") int xInicialSonda,
-			@QueryParam("yInicialSonda") int yInicialSonda,
-			@QueryParam("direcao") DirecaoCardial direcao,
-			@QueryParam("comandos") List<ComandoControleSonda> comandos) {
+	public Response moverGet(
+			@NotNull(message = ConstraintConstants.X_MAXIMO_PLANALTO) @QueryParam("xMaximoPlanalto") Integer xPlanalto,
+			@NotNull(message = ConstraintConstants.Y_MAXIMO_PLANALTO) @QueryParam("yMaximoPlanalto") Integer yPlanalto,
+			@NotNull(message = ConstraintConstants.INFORME_X_INICIAL_SONDA) @Min(value = 0, message = ConstraintConstants.POSICAO_X_INICIAL_MENOR_0) @QueryParam("xInicialSonda") Integer xInicialSonda,
+			@NotNull(message = ConstraintConstants.INFORME_Y_INICIAL_SONDA) @Min(value = 0, message = ConstraintConstants.POSICAO_Y_INICIAL_MENOR_0) @QueryParam("yInicialSonda") Integer yInicialSonda,
+			@NotNull(message = ConstraintConstants.INFORME_DIRECAO_SONDA) @QueryParam("direcao") DirecaoCardial direcao,
+			@NotNull(message = ConstraintConstants.ADICIONE_LISTA_COMANDOS) @QueryParam("comandos") List<ComandoControleSonda> comandos) {
 		Sonda sonda = new Sonda().pousarSondaNoPlanalto(
 				new Planalto().novoPlanalto(xPlanalto, yPlanalto)).novaSonda(
 				xInicialSonda, yInicialSonda, direcao);
