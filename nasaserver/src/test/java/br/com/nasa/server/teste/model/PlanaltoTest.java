@@ -1,7 +1,6 @@
 package br.com.nasa.server.teste.model;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
 import org.junit.Test;
 
@@ -12,7 +11,7 @@ import br.com.nasa.server.model.Planalto;
 /**
  * @author Gabz
  */
-public class PlanaltoTest extends TestCase {
+public class PlanaltoTest {
 
 	@Test
 	public void testePlanaltoValido() {

@@ -1,7 +1,6 @@
 package br.com.nasa.server.teste.model;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
 import org.junit.Test;
 
@@ -15,7 +14,7 @@ import br.com.nasa.server.model.Sonda;
 /**
  * @author Gabz
  */
-public class SondaTest extends TestCase {
+public class SondaTest {
 	@Test
 	public void testeNovaSondaValida() {
 		Sonda sonda = new Sonda().pousarSondaNoPlanalto(

@@ -2,6 +2,7 @@ package br.com.nasa.server.model;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -20,10 +21,12 @@ public class Planalto implements Serializable {
 	@XmlTransient
 	private Posicao xMinimo;
 	@NotNull(message = ConstraintConstants.X_MAXIMO_PLANALTO)
+	@Valid
 	private Posicao xMaximo;
 	@XmlTransient
 	private Posicao yMinimo;
 	@NotNull(message = ConstraintConstants.Y_MAXIMO_PLANALTO)
+	@Valid
 	private Posicao yMaximo;
 
 	public Planalto() {

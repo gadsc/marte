@@ -1,7 +1,6 @@
 package br.com.nasa.server.teste.model;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
 import org.junit.Test;
 
@@ -12,7 +11,7 @@ import br.com.nasa.server.model.Posicao;
 /**
  * @author Gabz
  */
-public class PosicaoTest extends TestCase {
+public class PosicaoTest {
 
 	private static int POSICAO_VALIDA = 1;
 	private static int POSICAO_INVALIDA = -1;
@@ -28,8 +27,7 @@ public class PosicaoTest extends TestCase {
 		try {
 			new Posicao(POSICAO_INVALIDA);
 		} catch (PosicaoInvalidaException exc) {
-			Assert.assertEquals(
-					ExceptionConstants.POSICAO_NEGATIVA,
+			Assert.assertEquals(ExceptionConstants.POSICAO_NEGATIVA,
 					exc.getMessage());
 		}
 	}
@@ -45,15 +43,17 @@ public class PosicaoTest extends TestCase {
 		try {
 			new Posicao(POSICAO_VALIDA).add(1, 1);
 		} catch (PosicaoInvalidaException exc) {
-			Assert.assertEquals(ExceptionConstants.LIMITE_MAXIMO_POSICAO_ATINGIDO,
+			Assert.assertEquals(
+					ExceptionConstants.LIMITE_MAXIMO_POSICAO_ATINGIDO,
 					exc.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testeSubtrairValido() {
 		Posicao posicao = new Posicao(POSICAO_VALIDA);
-		Assert.assertNotSame(posicao.getValor(), posicao.subtract(1, 0).getValor());
+		Assert.assertNotSame(posicao.getValor(), posicao.subtract(1, 0)
+				.getValor());
 	}
 
 	@Test
@@ -61,7 +61,8 @@ public class PosicaoTest extends TestCase {
 		try {
 			new Posicao(POSICAO_VALIDA).subtract(2, 1);
 		} catch (PosicaoInvalidaException exc) {
-			Assert.assertEquals(ExceptionConstants.LIMITE_MINIMO_POSICAO_ATINGIDO,
+			Assert.assertEquals(
+					ExceptionConstants.LIMITE_MINIMO_POSICAO_ATINGIDO,
 					exc.getMessage());
 		}
 	}

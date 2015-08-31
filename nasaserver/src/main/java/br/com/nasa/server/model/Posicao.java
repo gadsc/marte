@@ -2,6 +2,7 @@ package br.com.nasa.server.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Min;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.nasa.server.constants.ExceptionConstants;
@@ -10,6 +11,7 @@ import br.com.nasa.server.exception.PosicaoInvalidaException;
 @XmlRootElement
 public class Posicao implements Serializable {
 	private static final long serialVersionUID = 2425009801236102787L;
+	@Min(value=0, message=ExceptionConstants.POSICAO_NEGATIVA)
 	private int valor;
 
 	public Posicao() {

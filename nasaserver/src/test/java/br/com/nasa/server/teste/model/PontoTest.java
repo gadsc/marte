@@ -1,7 +1,6 @@
 package br.com.nasa.server.teste.model;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
 import org.junit.Test;
 
@@ -17,7 +16,7 @@ import br.com.nasa.server.model.Posicao;
 /**
  * @author Gabz
  */
-public class PontoTest extends TestCase {
+public class PontoTest {
 
 	@Test
 	public void testePontoValido() {
