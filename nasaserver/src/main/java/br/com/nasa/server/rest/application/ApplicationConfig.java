@@ -8,6 +8,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import br.com.nasa.server.rest.exception.ValidationExceptionMapper;
+import br.com.nasa.server.rs.service.SondaService;
 
 /**
  * Classe que controla o rest e seus recursos da sua aplicação
@@ -21,6 +22,7 @@ public class ApplicationConfig extends Application {
 
 	public ApplicationConfig() {
 		Set<Class<?>> c = new HashSet<Class<?>>();
+		c.add(SondaService.class);
 		c.add(ValidationExceptionMapper.class);
 
 		classes = Collections.unmodifiableSet(c);

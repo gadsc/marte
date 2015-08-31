@@ -51,7 +51,7 @@ public class SondaTest extends TestCase {
 		Sonda sonda = new Sonda().pousarSondaNoPlanalto(
 				new Planalto().novoPlanalto(5, 5)).novaSonda(1, 2,
 				DirecaoCardial.NORTH);
-		sonda.moverSonda(ComandoControleSonda.MOVE);
+		sonda.moverSonda(ComandoControleSonda.M);
 		Assert.assertEquals(sonda.getPontoAtual().getY().getValor(), 3);
 	}
 
@@ -60,7 +60,7 @@ public class SondaTest extends TestCase {
 		Sonda sonda = new Sonda().pousarSondaNoPlanalto(
 				new Planalto().novoPlanalto(5, 5)).novaSonda(1, 1,
 				DirecaoCardial.SOUTH);
-		sonda.moverSonda(ComandoControleSonda.MOVE);
+		sonda.moverSonda(ComandoControleSonda.M);
 		Assert.assertEquals(sonda.getPontoAtual().getY().getValor(), 0);
 	}
 
@@ -69,7 +69,7 @@ public class SondaTest extends TestCase {
 		Sonda sonda = new Sonda().pousarSondaNoPlanalto(
 				new Planalto().novoPlanalto(5, 5)).novaSonda(5, 1,
 				DirecaoCardial.WEST);
-		sonda.moverSonda(ComandoControleSonda.MOVE);
+		sonda.moverSonda(ComandoControleSonda.M);
 		Assert.assertEquals(sonda.getPontoAtual().getX().getValor(), 4);
 	}
 
@@ -78,7 +78,7 @@ public class SondaTest extends TestCase {
 		Sonda sonda = new Sonda().pousarSondaNoPlanalto(
 				new Planalto().novoPlanalto(5, 5)).novaSonda(1, 1,
 				DirecaoCardial.EAST);
-		sonda.moverSonda(ComandoControleSonda.MOVE);
+		sonda.moverSonda(ComandoControleSonda.M);
 		Assert.assertEquals(sonda.getPontoAtual().getX().getValor(), 2);
 	}
 
@@ -88,15 +88,15 @@ public class SondaTest extends TestCase {
 				new Planalto().novoPlanalto(5, 5)).novaSonda(1, 2,
 				DirecaoCardial.NORTH);
 
-		sonda.moverSonda(ComandoControleSonda.LEFT)
-				.moverSonda(ComandoControleSonda.MOVE)
-				.moverSonda(ComandoControleSonda.LEFT)
-				.moverSonda(ComandoControleSonda.MOVE)
-				.moverSonda(ComandoControleSonda.LEFT)
-				.moverSonda(ComandoControleSonda.MOVE)
-				.moverSonda(ComandoControleSonda.LEFT)
-				.moverSonda(ComandoControleSonda.MOVE)
-				.moverSonda(ComandoControleSonda.MOVE);
+		sonda.moverSonda(ComandoControleSonda.L)
+				.moverSonda(ComandoControleSonda.M)
+				.moverSonda(ComandoControleSonda.L)
+				.moverSonda(ComandoControleSonda.M)
+				.moverSonda(ComandoControleSonda.L)
+				.moverSonda(ComandoControleSonda.M)
+				.moverSonda(ComandoControleSonda.L)
+				.moverSonda(ComandoControleSonda.M)
+				.moverSonda(ComandoControleSonda.M);
 		Assert.assertEquals(sonda.getPontoAtual().getX().getValor(), 1);
 		Assert.assertEquals(sonda.getPontoAtual().getY().getValor(), 3);
 		Assert.assertEquals(sonda.getPontoAtual().getDirecaoAtual(),
@@ -109,16 +109,16 @@ public class SondaTest extends TestCase {
 				new Planalto().novoPlanalto(5, 5)).novaSonda(3, 3,
 				DirecaoCardial.EAST);
 
-		sonda.moverSonda(ComandoControleSonda.MOVE)
-				.moverSonda(ComandoControleSonda.MOVE)
-				.moverSonda(ComandoControleSonda.RIGHT)
-				.moverSonda(ComandoControleSonda.MOVE)
-				.moverSonda(ComandoControleSonda.MOVE)
-				.moverSonda(ComandoControleSonda.RIGHT)
-				.moverSonda(ComandoControleSonda.MOVE)
-				.moverSonda(ComandoControleSonda.RIGHT)
-				.moverSonda(ComandoControleSonda.RIGHT)
-				.moverSonda(ComandoControleSonda.MOVE);
+		sonda.moverSonda(ComandoControleSonda.M)
+				.moverSonda(ComandoControleSonda.M)
+				.moverSonda(ComandoControleSonda.R)
+				.moverSonda(ComandoControleSonda.M)
+				.moverSonda(ComandoControleSonda.M)
+				.moverSonda(ComandoControleSonda.R)
+				.moverSonda(ComandoControleSonda.M)
+				.moverSonda(ComandoControleSonda.R)
+				.moverSonda(ComandoControleSonda.R)
+				.moverSonda(ComandoControleSonda.M);
 		Assert.assertEquals(sonda.getPontoAtual().getX().getValor(), 5);
 		Assert.assertEquals(sonda.getPontoAtual().getY().getValor(), 1);
 		Assert.assertEquals(sonda.getPontoAtual().getDirecaoAtual(),

@@ -50,7 +50,7 @@ public class PontoTest extends TestCase {
 	public void testeMoverPontoValido() {
 		Ponto ponto = new Ponto(new Posicao(1), new Posicao(3),
 				DirecaoCardial.NORTH);
-		Assert.assertNotNull(ponto.mover(ComandoControleSonda.MOVE,
+		Assert.assertNotNull(ponto.mover(ComandoControleSonda.M,
 				new Planalto().novoPlanalto(5, 5)));
 	}
 
@@ -60,7 +60,7 @@ public class PontoTest extends TestCase {
 		try {
 			ponto = new Ponto(new Posicao(5), new Posicao(5),
 					DirecaoCardial.NORTH);
-			Assert.assertNotNull(ponto.mover(ComandoControleSonda.MOVE,
+			Assert.assertNotNull(ponto.mover(ComandoControleSonda.M,
 					new Planalto().novoPlanalto(5, 5)));
 		} catch (PosicaoInvalidaException exc) {
 			Assert.assertEquals(
@@ -75,7 +75,7 @@ public class PontoTest extends TestCase {
 		try {
 			ponto = new Ponto(new Posicao(0), new Posicao(0),
 					DirecaoCardial.SOUTH);
-			Assert.assertNotNull(ponto.mover(ComandoControleSonda.MOVE,
+			Assert.assertNotNull(ponto.mover(ComandoControleSonda.M,
 					new Planalto().novoPlanalto(5, 5)));
 		} catch (PosicaoInvalidaException exc) {
 			Assert.assertEquals(

@@ -2,9 +2,12 @@ package br.com.nasa.server.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.exception.PosicaoInvalidaException;
 
+@XmlRootElement
 public class Posicao implements Serializable {
 	private static final long serialVersionUID = 2425009801236102787L;
 	private int valor;

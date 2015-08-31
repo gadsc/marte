@@ -2,11 +2,14 @@ package br.com.nasa.server.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
 import br.com.nasa.server.exception.PontoInvalidoException;
 
+@XmlRootElement
 public class Ponto implements Serializable {
 	private static final long serialVersionUID = -2222430550784957493L;
 
@@ -16,18 +19,19 @@ public class Ponto implements Serializable {
 
 	public Ponto mover(ComandoControleSonda comando, Planalto planalto) {
 		if (comando == null) {
-			throw new PontoInvalidoException(ExceptionConstants.COMANDO_NAO_IDENTIFICADO);
+			throw new PontoInvalidoException(
+					ExceptionConstants.COMANDO_NAO_IDENTIFICADO);
 		} else {
 			switch (comando) {
-			case LEFT:
+			case L:
 				this.direcaoAtual = this.calculaProximaDirecao(
 						DirecaoCardial.EAST, DirecaoCardial.NORTH, 1);
 				break;
-			case RIGHT:
+			case R:
 				this.direcaoAtual = this.calculaProximaDirecao(
 						DirecaoCardial.NORTH, DirecaoCardial.EAST, -1);
 				break;
-			case MOVE:
+			case M:
 				if (this.isMovimentoY()) {
 					this.calculaMovimento(DirecaoCardial.NORTH, this.y,
 							planalto.getYMaximo().getValor(), planalto
@@ -39,7 +43,8 @@ public class Ponto implements Serializable {
 				}
 				break;
 			default:
-				throw new PontoInvalidoException(ExceptionConstants.COMANDO_NAO_IDENTIFICADO);
+				throw new PontoInvalidoException(
+						ExceptionConstants.COMANDO_NAO_IDENTIFICADO);
 			}
 		}
 
@@ -74,7 +79,8 @@ public class Ponto implements Serializable {
 		if (direcao != null) {
 			this.direcaoAtual = direcao;
 		} else {
-			throw new PontoInvalidoException(ExceptionConstants.DIRECAO_INVALIDA);
+			throw new PontoInvalidoException(
+					ExceptionConstants.DIRECAO_INVALIDA);
 		}
 	}
 

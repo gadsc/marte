@@ -2,16 +2,27 @@ package br.com.nasa.server.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
 import br.com.nasa.server.exception.NovaSondaException;
 import br.com.nasa.server.exception.PlanaltoInvalidoException;
 
+@XmlRootElement(name = "sonda")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Sonda implements Serializable {
 	private static final long serialVersionUID = 2799573443715829148L;
 
+	@NotNull
 	private Ponto pontoAtual;
+	@NotNull
+	@XmlTransient
 	private Planalto planalto;
 
 	public Sonda() {
@@ -82,5 +93,9 @@ public class Sonda implements Serializable {
 
 	public Ponto getPontoAtual() {
 		return pontoAtual;
+	}
+
+	public Planalto getPlanalto() {
+		return planalto;
 	}
 }

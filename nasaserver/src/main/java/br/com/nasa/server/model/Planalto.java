@@ -2,15 +2,27 @@ package br.com.nasa.server.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.exception.PlanaltoInvalidoException;
 import br.com.nasa.server.exception.PosicaoInvalidaException;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Planalto implements Serializable {
 	private static final long serialVersionUID = -8414648699525607406L;
+	@XmlTransient
 	private Posicao xMinimo;
+	@NotNull
 	private Posicao xMaximo;
+	@XmlTransient
 	private Posicao yMinimo;
+	@NotNull
 	private Posicao yMaximo;
 
 	public Planalto() {

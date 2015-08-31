@@ -1,8 +1,13 @@
 package br.com.nasa.server.enums;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public enum ComandoControleSonda {
-	LEFT("L"), RIGHT("R"), MOVE("M");
-	
+	L("LEFT"),
+	R("RRIGHT"),
+	M("MOVE");
+
 	private String codigoComando;
 
 	private ComandoControleSonda(String codigoDirecao) {
