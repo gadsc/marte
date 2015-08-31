@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import br.com.nasa.server.constants.ConstraintConstants;
 import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
@@ -19,9 +20,9 @@ import br.com.nasa.server.exception.PlanaltoInvalidoException;
 public class Sonda implements Serializable {
 	private static final long serialVersionUID = 2799573443715829148L;
 
-	@NotNull
+	@NotNull(message = ConstraintConstants.INFORME_PONTO_ATUAL_SONDA)
 	private Ponto pontoAtual;
-	@NotNull
+
 	@XmlTransient
 	private Planalto planalto;
 
@@ -60,7 +61,7 @@ public class Sonda implements Serializable {
 
 	public String posicaoAtual() {
 		return "x: " + pontoAtual.getX().getValor() + "\ty:"
-				+ pontoAtual.getY().getValor() + "\tDireçãoo: "
+				+ pontoAtual.getY().getValor() + "\tDireção: "
 				+ pontoAtual.getDirecaoAtual().getDirecao();
 	}
 

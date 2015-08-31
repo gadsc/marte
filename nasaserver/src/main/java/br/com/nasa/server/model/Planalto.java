@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import br.com.nasa.server.constants.ConstraintConstants;
 import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.exception.PlanaltoInvalidoException;
 import br.com.nasa.server.exception.PosicaoInvalidaException;
@@ -18,11 +19,11 @@ public class Planalto implements Serializable {
 	private static final long serialVersionUID = -8414648699525607406L;
 	@XmlTransient
 	private Posicao xMinimo;
-	@NotNull
+	@NotNull(message = ConstraintConstants.X_MAXIMO_PLANALTO)
 	private Posicao xMaximo;
 	@XmlTransient
 	private Posicao yMinimo;
-	@NotNull
+	@NotNull(message = ConstraintConstants.Y_MAXIMO_PLANALTO)
 	private Posicao yMaximo;
 
 	public Planalto() {

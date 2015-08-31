@@ -3,8 +3,12 @@ package br.com.nasa.server.rs.request;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import br.com.nasa.server.constants.ConstraintConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
 import br.com.nasa.server.model.Planalto;
@@ -13,10 +17,18 @@ import br.com.nasa.server.model.Planalto;
 public class SondaRequest implements Serializable {
 	private static final long serialVersionUID = -1729529959511228515L;
 
+	@NotNull(message = ConstraintConstants.INFORME_X_Y_MAXIMO_PLANALTO)
+	@Valid
 	private Planalto planalto;
-	private int xInicialSonda;
-	private int yInicialSonda;
+	@NotNull(message = ConstraintConstants.INFORME_X_INICIAL_SONDA)
+	@Min(value = 0, message = ConstraintConstants.POSICAO_X_INICIAL_MENOR_0)
+	private Integer xInicialSonda;
+	@NotNull(message = ConstraintConstants.INFORME_Y_INICIAL_SONDA)
+	@Min(value = 0, message = ConstraintConstants.POSICAO_Y_INICIAL_MENOR_0)
+	private Integer yInicialSonda;
+	@NotNull(message = ConstraintConstants.INFORME_DIRECAO_SONDA)
 	private DirecaoCardial direcaoInicial;
+	@NotNull(message = ConstraintConstants.ADICIONE_LISTA_COMANDOS)
 	private List<ComandoControleSonda> comandos;
 
 	public Planalto getPlanalto() {
@@ -27,19 +39,19 @@ public class SondaRequest implements Serializable {
 		this.planalto = planalto;
 	}
 
-	public int getxInicialSonda() {
+	public Integer getxInicialSonda() {
 		return xInicialSonda;
 	}
 
-	public void setxInicialSonda(int xInicialSonda) {
+	public void setxInicialSonda(Integer xInicialSonda) {
 		this.xInicialSonda = xInicialSonda;
 	}
 
-	public int getyInicialSonda() {
+	public Integer getyInicialSonda() {
 		return yInicialSonda;
 	}
 
-	public void setyInicialSonda(int yInicialSonda) {
+	public void setyInicialSonda(Integer yInicialSonda) {
 		this.yInicialSonda = yInicialSonda;
 	}
 
