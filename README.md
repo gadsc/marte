@@ -49,3 +49,17 @@ Body Request:
 Exemplo de consumo via get (apenas <b>uma</b> sonda por vez):
 URL:
 <a href="http://localhost:8080/nasaserver/sonda/get/mover/unica?xMaximoPlanalto=5&yMaximoPlanalto=5&xInicialSonda=1&yInicialSonda=3&direcao=NORTH&comandos=M&comandos=M">http://ip:porta/nasaserver/sonda/get/mover/unica?xMaximoPlanalto=5&yMaximoPlanalto=5&xInicialSonda=1&yInicialSonda=3&direcao=NORTH&comandos=M&comandos=M</a>
+<br />
+#h2 Tecnologias utilizadas:
+- Java
+- JAX-RS
+- CDI
+- BeanValidation
+- Junit
+- Maven
+ 
+#h2 Container Utilizado:
+- WildFly 8.2.0
+ 
+#h2 Extensão utilizada para teste da API Rest:
+- Postman (Extensão para o Chrome)
