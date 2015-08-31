@@ -1,16 +1,16 @@
-package br.com.nasa.server.teste.entities;
-
-import java.security.InvalidParameterException;
+package br.com.nasa.server.teste.model;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import br.com.nasa.server.entities.Planalto;
-import br.com.nasa.server.entities.Sonda;
+import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
+import br.com.nasa.server.exception.NovaSondaException;
+import br.com.nasa.server.model.Planalto;
+import br.com.nasa.server.model.Sonda;
 
 /**
  * @author Gabz
@@ -30,9 +30,8 @@ public class SondaTest extends TestCase {
 			new Sonda()
 					.pousarSondaNoPlanalto(new Planalto().novoPlanalto(5, 5))
 					.novaSonda(8, 8, DirecaoCardial.NORTH);
-		} catch (IllegalArgumentException exc) {
-			Assert.assertEquals(
-					"Impossível adicionar uma sonda fora do limite do planalto!",
+		} catch (NovaSondaException exc) {
+			Assert.assertEquals(ExceptionConstants.SONDA_FORA_LIMITE_PLANALTO,
 					exc.getMessage());
 		}
 	}
@@ -41,9 +40,8 @@ public class SondaTest extends TestCase {
 	public void testeNovaSondaSemPlanalto() {
 		try {
 			new Sonda().novaSonda(1, 5, DirecaoCardial.NORTH);
-		} catch (InvalidParameterException exc) {
-			Assert.assertEquals(
-					"Não é possível criar uma nova sonda em um planalto inválido!",
+		} catch (NovaSondaException exc) {
+			Assert.assertEquals(ExceptionConstants.SONDA_COM_PLANALTO_INVALIDO,
 					exc.getMessage());
 		}
 	}

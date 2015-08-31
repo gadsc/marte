@@ -1,6 +1,9 @@
-package br.com.nasa.server.entities;
+package br.com.nasa.server.model;
 
 import java.io.Serializable;
+
+import br.com.nasa.server.constants.ExceptionConstants;
+import br.com.nasa.server.exception.PosicaoInvalidaException;
 
 public class Posicao implements Serializable {
 	private static final long serialVersionUID = 2425009801236102787L;
@@ -12,8 +15,8 @@ public class Posicao implements Serializable {
 
 	public Posicao(int valor) {
 		if (valor < 0) {
-			throw new ArithmeticException(
-					"Não é possível criar uma posição negativa.");
+			throw new PosicaoInvalidaException(
+					ExceptionConstants.POSICAO_NEGATIVA);
 		}
 		this.valor = valor;
 	}
@@ -23,8 +26,8 @@ public class Posicao implements Serializable {
 			this.valor += valor;
 			return this;
 		} else {
-			throw new ArithmeticException(
-					"Não é possível adicionar do ponto máximo.");
+			throw new PosicaoInvalidaException(
+					ExceptionConstants.LIMITE_MAXIMO_POSICAO_ATINGIDO);
 		}
 	}
 
@@ -33,8 +36,8 @@ public class Posicao implements Serializable {
 			this.valor -= valor;
 			return this;
 		} else {
-			throw new ArithmeticException(
-					"Não é possível subtrair do ponto mínimo.");
+			throw new PosicaoInvalidaException(
+					ExceptionConstants.LIMITE_MINIMO_POSICAO_ATINGIDO);
 		}
 	}
 

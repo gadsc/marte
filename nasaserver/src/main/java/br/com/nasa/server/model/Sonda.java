@@ -1,10 +1,12 @@
-package br.com.nasa.server.entities;
+package br.com.nasa.server.model;
 
 import java.io.Serializable;
-import java.security.InvalidParameterException;
 
+import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
+import br.com.nasa.server.exception.NovaSondaException;
+import br.com.nasa.server.exception.PlanaltoInvalidoException;
 
 public class Sonda implements Serializable {
 	private static final long serialVersionUID = 2799573443715829148L;
@@ -25,9 +27,9 @@ public class Sonda implements Serializable {
 			if (this.planaltoValido() && this.sondaNoLimitePlanalto(x, y)) {
 				this.pontoAtual = new Ponto().novoPonto(x, y, direcao);
 			}
-		} catch (InvalidParameterException exc) {
-			throw new InvalidParameterException(
-					"Não é possível criar uma nova sonda em um planalto inválido!");
+		} catch (PlanaltoInvalidoException exc) {
+			throw new NovaSondaException(
+					ExceptionConstants.SONDA_COM_PLANALTO_INVALIDO);
 		}
 
 		return this;
@@ -53,7 +55,8 @@ public class Sonda implements Serializable {
 
 	private boolean planaltoValido() {
 		if (this.planalto == null) {
-			throw new InvalidParameterException("Planalto inválido!");
+			throw new PlanaltoInvalidoException(
+					ExceptionConstants.PLANALTO_INVALIDO);
 		} else {
 			return true;
 		}
@@ -66,8 +69,8 @@ public class Sonda implements Serializable {
 						planalto.getYMaximo().getValor()));
 
 		if (!isSondaNoLimite) {
-			throw new IllegalArgumentException(
-					"Impossível adicionar uma sonda fora do limite do planalto!");
+			throw new NovaSondaException(
+					ExceptionConstants.SONDA_FORA_LIMITE_PLANALTO);
 		}
 
 		return isSondaNoLimite;
@@ -76,7 +79,7 @@ public class Sonda implements Serializable {
 	private boolean dentroDoLimite(int valor, int limiteMinimo, int limiteMaximo) {
 		return valor >= limiteMinimo && valor <= limiteMaximo;
 	}
-	
+
 	public Ponto getPontoAtual() {
 		return pontoAtual;
 	}

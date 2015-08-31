@@ -1,6 +1,10 @@
-package br.com.nasa.server.entities;
+package br.com.nasa.server.model;
 
 import java.io.Serializable;
+
+import br.com.nasa.server.constants.ExceptionConstants;
+import br.com.nasa.server.exception.PlanaltoInvalidoException;
+import br.com.nasa.server.exception.PosicaoInvalidaException;
 
 public class Planalto implements Serializable {
 	private static final long serialVersionUID = -8414648699525607406L;
@@ -25,9 +29,9 @@ public class Planalto implements Serializable {
 	public Planalto novoPlanalto(int xMaximo, int yMaximo) {
 		try {
 			return new Planalto(new Posicao(xMaximo), new Posicao(yMaximo));
-		} catch (ArithmeticException exc) {
-			throw new ArithmeticException(
-					"Não é possível criar um planalto com terreno negativo.");
+		} catch (PosicaoInvalidaException exc) {
+			throw new PlanaltoInvalidoException(
+					ExceptionConstants.PLANALTO_NEGATIVO);
 		}
 	}
 

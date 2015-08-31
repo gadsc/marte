@@ -1,10 +1,11 @@
-package br.com.nasa.server.entities;
+package br.com.nasa.server.model;
 
 import java.io.Serializable;
-import java.security.InvalidParameterException;
 
+import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
+import br.com.nasa.server.exception.PontoInvalidoException;
 
 public class Ponto implements Serializable {
 	private static final long serialVersionUID = -2222430550784957493L;
@@ -15,7 +16,7 @@ public class Ponto implements Serializable {
 
 	public Ponto mover(ComandoControleSonda comando, Planalto planalto) {
 		if (comando == null) {
-			throw new InvalidParameterException("Comando não identificado!");
+			throw new PontoInvalidoException(ExceptionConstants.COMANDO_NAO_IDENTIFICADO);
 		} else {
 			switch (comando) {
 			case LEFT:
@@ -38,7 +39,7 @@ public class Ponto implements Serializable {
 				}
 				break;
 			default:
-				throw new InvalidParameterException("Comando não identificado!");
+				throw new PontoInvalidoException(ExceptionConstants.COMANDO_NAO_IDENTIFICADO);
 			}
 		}
 
@@ -73,7 +74,7 @@ public class Ponto implements Serializable {
 		if (direcao != null) {
 			this.direcaoAtual = direcao;
 		} else {
-			throw new InvalidParameterException("Direção inválida!");
+			throw new PontoInvalidoException(ExceptionConstants.DIRECAO_INVALIDA);
 		}
 	}
 

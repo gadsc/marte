@@ -1,11 +1,13 @@
-package br.com.nasa.server.teste.entities;
+package br.com.nasa.server.teste.model;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import br.com.nasa.server.entities.Posicao;
+import br.com.nasa.server.constants.ExceptionConstants;
+import br.com.nasa.server.exception.PosicaoInvalidaException;
+import br.com.nasa.server.model.Posicao;
 
 /**
  * @author Gabz
@@ -25,9 +27,9 @@ public class PosicaoTest extends TestCase {
 	public void testePosicaoInvalida() {
 		try {
 			new Posicao(POSICAO_INVALIDA);
-		} catch (ArithmeticException exc) {
+		} catch (PosicaoInvalidaException exc) {
 			Assert.assertEquals(
-					"Não é possível criar uma posição negativa.",
+					ExceptionConstants.POSICAO_NEGATIVA,
 					exc.getMessage());
 		}
 	}
@@ -42,8 +44,8 @@ public class PosicaoTest extends TestCase {
 	public void testeAdicionarInvalido() {
 		try {
 			new Posicao(POSICAO_VALIDA).add(1, 1);
-		} catch (ArithmeticException exc) {
-			Assert.assertEquals("Não é possível adicionar do ponto máximo.",
+		} catch (PosicaoInvalidaException exc) {
+			Assert.assertEquals(ExceptionConstants.LIMITE_MAXIMO_POSICAO_ATINGIDO,
 					exc.getMessage());
 		}
 	}
@@ -58,8 +60,8 @@ public class PosicaoTest extends TestCase {
 	public void testeSubtrairInvalido() {
 		try {
 			new Posicao(POSICAO_VALIDA).subtract(2, 1);
-		} catch (ArithmeticException exc) {
-			Assert.assertEquals("Não é possível subtrair do ponto mínimo.",
+		} catch (PosicaoInvalidaException exc) {
+			Assert.assertEquals(ExceptionConstants.LIMITE_MINIMO_POSICAO_ATINGIDO,
 					exc.getMessage());
 		}
 	}
