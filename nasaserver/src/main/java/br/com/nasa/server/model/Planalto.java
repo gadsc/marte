@@ -14,6 +14,12 @@ import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.exception.PlanaltoInvalidoException;
 import br.com.nasa.server.exception.PosicaoInvalidaException;
 
+/**
+ * Modelo representando o Planalto
+ * 
+ * @author Gabz
+ *
+ */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Planalto implements Serializable {

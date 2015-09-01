@@ -9,6 +9,12 @@ import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
 import br.com.nasa.server.exception.PontoInvalidoException;
 
+/**
+ * Modelo que representa um Ponto
+ * 
+ * @author Gabz
+ *
+ */
 @XmlRootElement
 public class Ponto implements Serializable {
 	private static final long serialVersionUID = -2222430550784957493L;
@@ -17,6 +23,14 @@ public class Ponto implements Serializable {
 	private Posicao y;
 	private DirecaoCardial direcaoAtual;
 
+	/**
+	 * Implementação do método mover a partir de um Comando, move um ponto dado
+	 * um Planalto
+	 * 
+	 * @param comando
+	 * @param planalto
+	 * @return
+	 */
 	public Ponto mover(ComandoControleSonda comando, Planalto planalto) {
 		if (comando == null) {
 			throw new PontoInvalidoException(
@@ -51,17 +65,33 @@ public class Ponto implements Serializable {
 		return this;
 	}
 
+	/**
+	 * @return se o movimento é no eixo Y
+	 */
 	private boolean isMovimentoY() {
 		return DirecaoCardial.NORTH.equals(this.direcaoAtual)
 				|| DirecaoCardial.SOUTH.equals(this.direcaoAtual);
 	}
 
+	/**
+	 * @param direcaoMovimento
+	 * @param posicao
+	 * @param maximoPermitido
+	 * @param minimoPermitido
+	 * @return a nova Posicao calculada após o movimento
+	 */
 	private Posicao calculaMovimento(DirecaoCardial direcaoMovimento,
 			Posicao posicao, int maximoPermitido, int minimoPermitido) {
 		return direcaoMovimento.equals(this.direcaoAtual) ? posicao.add(1,
 				maximoPermitido) : posicao.subtract(1, minimoPermitido);
 	}
 
+	/**
+	 * @param direcaoLimite
+	 * @param proximaDirecaoAposLimite
+	 * @param moveProximaDirecao
+	 * @return a proxima Direcao calculada após o movimento
+	 */
 	private DirecaoCardial calculaProximaDirecao(DirecaoCardial direcaoLimite,
 			DirecaoCardial proximaDirecaoAposLimite, int moveProximaDirecao) {
 		return direcaoLimite.equals(this.direcaoAtual) ? proximaDirecaoAposLimite

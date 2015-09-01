@@ -26,6 +26,12 @@ import br.com.nasa.server.model.Planalto;
 import br.com.nasa.server.rs.request.SondaRequest;
 import br.com.nasa.server.service.bean.SondaBean;
 
+/**
+ * Classe que expõe os serviços REST da Sonda
+ * 
+ * @author Gabz
+ *
+ */
 @Path("/sonda")
 public class SondaService implements Serializable {
 	private static final long serialVersionUID = 2258435493236584123L;

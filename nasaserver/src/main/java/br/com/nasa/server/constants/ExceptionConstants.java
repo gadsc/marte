@@ -1,5 +1,11 @@
 package br.com.nasa.server.constants;
 
+/**
+ * Constantes das exceptions
+ * 
+ * @author Gabz
+ *
+ */
 public class ExceptionConstants {
 	public static final String PLANALTO_NEGATIVO = "Não é possível criar um planalto com terreno negativo.";
 	public static final String PLANALTO_INVALIDO = "Planalto inválido!";

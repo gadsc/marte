@@ -1,5 +1,11 @@
 package br.com.nasa.server.constants;
 
+/**
+ * Constantes das Constraints(BeanValidations)
+ * 
+ * @author Gabz
+ *
+ */
 public class ConstraintConstants {
 	public static final String INCLUA_SONDA_REQUISICAO = "Inclua alguma sonda para requisição!";
 	public static final String INFORME_X_Y_MAXIMO_PLANALTO = "Informe o ponto X e o ponto Y máximo do planalto!";

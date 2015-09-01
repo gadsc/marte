@@ -15,6 +15,12 @@ import br.com.nasa.server.enums.DirecaoCardial;
 import br.com.nasa.server.exception.NovaSondaException;
 import br.com.nasa.server.exception.PlanaltoInvalidoException;
 
+/**
+ * Modelo que representa a Sonda e suas operações
+ * 
+ * @author Gabz
+ *
+ */
 @XmlRootElement(name = "sonda")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Sonda implements Serializable {
@@ -52,6 +58,12 @@ public class Sonda implements Serializable {
 		return this;
 	}
 
+	/**
+	 * Método que move a Sonda no Planalto a partir de um comando
+	 * 
+	 * @param comando
+	 * @return
+	 */
 	public Sonda moverSonda(ComandoControleSonda comando) {
 		if (this.planaltoValido()) {
 			this.pontoAtual.mover(comando, this.planalto);
@@ -59,12 +71,18 @@ public class Sonda implements Serializable {
 		return this;
 	}
 
+	/**
+	 * @return posição atual da Sonda
+	 */
 	public String posicaoAtual() {
 		return "x: " + pontoAtual.getX().getValor() + "\ty:"
 				+ pontoAtual.getY().getValor() + "\tDireção: "
 				+ pontoAtual.getDirecaoAtual().getDirecao();
 	}
 
+	/**
+	 * @return se o Planalto atrelado à Sonda é valido
+	 */
 	private boolean planaltoValido() {
 		if (this.planalto == null) {
 			throw new PlanaltoInvalidoException(
@@ -74,6 +92,11 @@ public class Sonda implements Serializable {
 		}
 	}
 
+	/**
+	 * @param x
+	 * @param y
+	 * @return se a sonda está dentro do limite do planalto
+	 */
 	private boolean sondaNoLimitePlanalto(int x, int y) {
 		boolean isSondaNoLimite = (this.dentroDoLimite(x, planalto.getXMinimo()
 				.getValor(), planalto.getXMaximo().getValor()))
@@ -88,6 +111,14 @@ public class Sonda implements Serializable {
 		return isSondaNoLimite;
 	}
 
+	/**
+	 * Método que calcula se a Sonda está dentro ou fora do limite do planalto
+	 * 
+	 * @param valor
+	 * @param limiteMinimo
+	 * @param limiteMaximo
+	 * @return
+	 */
 	private boolean dentroDoLimite(int valor, int limiteMinimo, int limiteMaximo) {
 		return valor >= limiteMinimo && valor <= limiteMaximo;
 	}

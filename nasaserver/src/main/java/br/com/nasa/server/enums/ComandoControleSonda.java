@@ -2,6 +2,10 @@ package br.com.nasa.server.enums;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * @author Gabz
+ *
+ */
 @XmlRootElement
 public enum ComandoControleSonda {
 	L("LEFT"),

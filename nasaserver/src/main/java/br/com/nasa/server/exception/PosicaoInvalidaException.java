@@ -1,5 +1,10 @@
 package br.com.nasa.server.exception;
 
+/**
+ * 
+ * @author Gabz
+ *
+ */
 public class PosicaoInvalidaException extends RuntimeException {
 	private static final long serialVersionUID = 4454399356715838770L;
 

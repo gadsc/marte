@@ -13,6 +13,12 @@ import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
 import br.com.nasa.server.model.Planalto;
 
+/**
+ * Classe utilizada para Requests ao serviço de Sonda
+ * 
+ * @author Gabz
+ *
+ */
 @XmlRootElement(name = "sondaRequest")
 public class SondaRequest implements Serializable {
 	private static final long serialVersionUID = -1729529959511228515L;

@@ -8,6 +8,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.exception.PosicaoInvalidaException;
 
+/**
+ * Modelo que representa uma Posicao
+ * 
+ * @author Gabz
+ *
+ */
 @XmlRootElement
 public class Posicao implements Serializable {
 	private static final long serialVersionUID = 2425009801236102787L;

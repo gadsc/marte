@@ -2,6 +2,10 @@ package br.com.nasa.server.enums;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * @author Gabz
+ *
+ */
 @XmlRootElement
 public enum DirecaoCardial {
 	NORTH(0, "N"), WEST(1, "W"), SOUTH(2, "S"), EAST(3, "E");

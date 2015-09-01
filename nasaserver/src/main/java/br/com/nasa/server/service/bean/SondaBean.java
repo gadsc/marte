@@ -10,6 +10,12 @@ import br.com.nasa.server.model.Planalto;
 import br.com.nasa.server.model.Sonda;
 import br.com.nasa.server.rs.request.SondaRequest;
 
+/**
+ * Classe que executa a Sonda, movimenta, cria e relaciona ela à um planalto
+ * 
+ * @author Gabz
+ *
+ */
 public class SondaBean implements Serializable {
 	private static final long serialVersionUID = -2163626647733471290L;
 

@@ -1,5 +1,9 @@
 package br.com.nasa.server.exception;
 
+/**
+ * @author Gabz
+ *
+ */
 public class NovaSondaException extends RuntimeException {
 	private static final long serialVersionUID = 7244774946476149009L;
 
