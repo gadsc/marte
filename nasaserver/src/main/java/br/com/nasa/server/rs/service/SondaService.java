@@ -22,6 +22,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 import br.com.nasa.server.constants.ConstraintConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
+import br.com.nasa.server.exception.NovaSondaException;
+import br.com.nasa.server.exception.PlanaltoInvalidoException;
+import br.com.nasa.server.exception.PontoInvalidoException;
+import br.com.nasa.server.exception.PosicaoInvalidaException;
 import br.com.nasa.server.model.Planalto;
 import br.com.nasa.server.rs.request.SondaRequest;
 import br.com.nasa.server.service.bean.SondaBean;
@@ -68,7 +72,8 @@ public class SondaService implements Serializable {
 		try {
 			response = Response.ok(sondaBean.executaSondas(sondasRequest))
 					.build();
-		} catch (RuntimeException exc) {
+		} catch (NovaSondaException | PlanaltoInvalidoException
+				| PontoInvalidoException | PosicaoInvalidaException exc) {
 			response = Response.status(Status.BAD_REQUEST)
 					.entity(exc.getMessage()).build();
 		}
