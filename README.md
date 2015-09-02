@@ -7,44 +7,36 @@ Header:
 Content-Type=application/json<br />
 Body Request:
 ```json
-[
-  {"planalto":
-    {"xMaximo":{"valor":5},
-     "yMaximo":{"valor":5}
-    },
-    "xInicialSonda":1,
-    "yInicialSonda":3,
-    "direcaoInicial":"NORTH",
-    "comandos":["M"]
-  },
-  {"planalto":
-    {"xMaximo":{"valor":5},
-     "yMaximo":{"valor":5}
-    },
-    "xInicialSonda":1,
-    "yInicialSonda":3,
-    "direcaoInicial":"EAST",
-    "comandos":["M"]
-  },
-  {"planalto":
-    {"xMaximo":{"valor":5},
-     "yMaximo":{"valor":5}
-    },
-    "xInicialSonda":1,
-    "yInicialSonda":3,
-    "direcaoInicial":"WEST",
-    "comandos":["M"]
-  },
-  {"planalto":
-    {"xMaximo":{"valor":5},
-     "yMaximo":{"valor":5}
-    },
-    "xInicialSonda":1,
-    "yInicialSonda":3,
-    "direcaoInicial":"SOUTH",
-    "comandos":["M"]
-  }
-]
+{"planalto":
+	{"xMaximo": {"valor":5},
+	 "yMaximo": {"valor":5}
+	},
+"sondas":
+[ 	{ "pontoAtual": 
+		{"x":{"valor":1},
+		"y":{"valor":3},
+	  "direcaoAtual":"NORTH"},
+	  "comandos":["M"]
+	},
+	{ "pontoAtual":
+		{"x":{"valor":1},
+		"y":{"valor":3},
+	  "direcaoAtual":"EAST"},
+	  "comandos":["M"]
+	},
+	{  "pontoAtual":
+		{"x":{"valor":1},
+		"y":{"valor":3},
+	  "direcaoAtual":"SOUTH"},
+	  "comandos":["M"]
+	},
+	{ "pontoAtual":
+		{"x":{"valor":1},
+		"y":{"valor":3},
+	  "direcaoAtual":"WEST"},
+	  "comandos":["M"]
+	}
+]}
 ```
 Exemplo de consumo via get (apenas <b>uma</b> sonda por vez):
 URL:
