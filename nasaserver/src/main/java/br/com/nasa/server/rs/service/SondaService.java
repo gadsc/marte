@@ -17,8 +17,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import br.com.nasa.server.constants.ConstraintConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
@@ -27,6 +25,7 @@ import br.com.nasa.server.exception.PlanaltoInvalidoException;
 import br.com.nasa.server.exception.PontoInvalidoException;
 import br.com.nasa.server.exception.PosicaoInvalidaException;
 import br.com.nasa.server.model.Planalto;
+import br.com.nasa.server.model.Sonda;
 import br.com.nasa.server.rs.request.SondaRequest;
 import br.com.nasa.server.service.bean.SondaBean;
 
@@ -55,10 +54,9 @@ public class SondaService implements Serializable {
 			@NotNull(message = ConstraintConstants.INFORME_DIRECAO_SONDA) @QueryParam("direcao") DirecaoCardial direcao,
 			@NotNull(message = ConstraintConstants.ADICIONE_LISTA_COMANDOS) @QueryParam("comandos") List<ComandoControleSonda> comandos) {
 		return Response.ok(
-				sondaBean.executaSonda(
-						new Planalto().novoPlanalto(xPlanalto, yPlanalto),
-						xInicialSonda, yInicialSonda, direcao, comandos))
-				.build();
+				sondaBean.moveSonda(new Planalto().novoPlanalto(xPlanalto,
+						yPlanalto), new Sonda().novaSonda(xInicialSonda,
+						yInicialSonda, direcao, comandos))).build();
 	}
 
 	@Path("/put/mover/lista")
@@ -66,12 +64,11 @@ public class SondaService implements Serializable {
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response moverPut(
-			@NotNull(message = ConstraintConstants.INCLUA_SONDA_REQUISICAO) @NotEmpty(message = ConstraintConstants.INCLUA_SONDA_REQUISICAO) @Valid List<SondaRequest> sondasRequest) {
+			@NotNull(message = ConstraintConstants.INCLUA_SONDA_REQUISICAO) @Valid SondaRequest sondasRequest) {
 		Response response = null;
 
 		try {
-			response = Response.ok(sondaBean.executaSondas(sondasRequest))
-					.build();
+			response = Response.ok(sondaBean.moveSondas(sondasRequest)).build();
 		} catch (NovaSondaException | PlanaltoInvalidoException
 				| PontoInvalidoException | PosicaoInvalidaException exc) {
 			response = Response.status(Status.BAD_REQUEST)

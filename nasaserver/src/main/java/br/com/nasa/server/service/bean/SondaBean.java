@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.nasa.server.enums.ComandoControleSonda;
-import br.com.nasa.server.enums.DirecaoCardial;
 import br.com.nasa.server.model.Planalto;
 import br.com.nasa.server.model.Sonda;
 import br.com.nasa.server.rs.request.SondaRequest;
@@ -19,28 +17,16 @@ import br.com.nasa.server.rs.request.SondaRequest;
 public class SondaBean implements Serializable {
 	private static final long serialVersionUID = -2163626647733471290L;
 
-	public List<Sonda> executaSondas(List<SondaRequest> requisicoes) {
+	public List<Sonda> moveSondas(SondaRequest requisicoes) {
 		List<Sonda> sondas = new ArrayList<Sonda>();
-		for (SondaRequest sondaRequest : requisicoes) {
-			sondas.add(this.executaSonda(sondaRequest.getPlanalto(),
-					sondaRequest.getxInicialSonda(),
-					sondaRequest.getyInicialSonda(),
-					sondaRequest.getDirecaoInicial(),
-					sondaRequest.getComandos()));
+		for (Sonda sondaRequest : requisicoes.getSondas()) {
+			sondas.add(this.moveSonda(requisicoes.getPlanalto(), sondaRequest));
 		}
 
 		return sondas;
 	}
 
-	public Sonda executaSonda(Planalto planalto, int xInicial, int yInicial,
-			DirecaoCardial direcaoInicial, List<ComandoControleSonda> comandos) {
-		Sonda sonda = new Sonda().pousarSondaNoPlanalto(planalto).novaSonda(
-				xInicial, yInicial, direcaoInicial);
-
-		for (ComandoControleSonda comando : comandos) {
-			sonda.moverSonda(comando);
-		}
-
-		return sonda;
+	public Sonda moveSonda(Planalto planalto, Sonda sonda) {
+		return sonda.pousarSondaNoPlanalto(planalto).moverListaComandos();
 	}
 }

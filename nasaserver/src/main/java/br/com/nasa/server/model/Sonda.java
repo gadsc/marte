@@ -1,6 +1,7 @@
 package br.com.nasa.server.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -32,6 +33,9 @@ public class Sonda implements Serializable {
 	@XmlTransient
 	private Planalto planalto;
 
+	@NotNull(message = ConstraintConstants.ADICIONE_LISTA_COMANDOS)
+	private List<ComandoControleSonda> comandos;
+
 	public Sonda() {
 
 	}
@@ -40,11 +44,13 @@ public class Sonda implements Serializable {
 		this.pontoAtual = ponto;
 	}
 
-	public Sonda novaSonda(int x, int y, DirecaoCardial direcao) {
+	public Sonda novaSonda(int x, int y, DirecaoCardial direcao,
+			List<ComandoControleSonda> comandos) {
 		try {
 			if (this.planaltoValido() && this.sondaNoLimitePlanalto(x, y)) {
 				this.pontoAtual = new Ponto().novoPonto(x, y, direcao);
 			}
+			this.setComandos(comandos);
 		} catch (PlanaltoInvalidoException exc) {
 			throw new NovaSondaException(
 					ExceptionConstants.SONDA_COM_PLANALTO_INVALIDO);
@@ -71,6 +77,20 @@ public class Sonda implements Serializable {
 		return this;
 	}
 
+	public Sonda moverListaComandos(List<ComandoControleSonda> comandos) {
+		this.setComandos(comandos);
+
+		for (ComandoControleSonda comando : this.comandos) {
+			this.moverSonda(comando);
+		}
+
+		return this;
+	}
+
+	public Sonda moverListaComandos() {
+		return this.moverListaComandos(this.comandos);
+	}
+
 	/**
 	 * @return posição atual da Sonda
 	 */
@@ -78,6 +98,12 @@ public class Sonda implements Serializable {
 		return "x: " + pontoAtual.getX().getValor() + "\ty:"
 				+ pontoAtual.getY().getValor() + "\tDireção: "
 				+ pontoAtual.getDirecaoAtual().getDirecao();
+	}
+
+	public void setComandos(List<ComandoControleSonda> comandos) {
+		if (comandos != null) {
+			this.comandos = comandos;
+		}
 	}
 
 	/**
