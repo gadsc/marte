@@ -2,8 +2,11 @@ package br.com.nasa.server.model;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import br.com.nasa.server.constants.ConstraintConstants;
 import br.com.nasa.server.constants.ExceptionConstants;
 import br.com.nasa.server.enums.ComandoControleSonda;
 import br.com.nasa.server.enums.DirecaoCardial;
@@ -19,8 +22,13 @@ import br.com.nasa.server.exception.PontoInvalidoException;
 public class Ponto implements Serializable {
 	private static final long serialVersionUID = -2222430550784957493L;
 
+	@Valid
+	@NotNull(message = ConstraintConstants.INFORME_X_INICIAL_SONDA)
 	private Posicao x;
+	@Valid
+	@NotNull(message = ConstraintConstants.INFORME_Y_INICIAL_SONDA)
 	private Posicao y;
+	@NotNull(message = ConstraintConstants.INFORME_DIRECAO_SONDA)
 	private DirecaoCardial direcaoAtual;
 
 	/**

@@ -3,6 +3,7 @@ package br.com.nasa.server.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -28,6 +29,7 @@ public class Sonda implements Serializable {
 	private static final long serialVersionUID = 2799573443715829148L;
 
 	@NotNull(message = ConstraintConstants.INFORME_PONTO_ATUAL_SONDA)
+	@Valid
 	private Ponto pontoAtual;
 
 	@XmlTransient
